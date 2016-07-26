@@ -108,7 +108,7 @@ namespace ts {
             isIdenticalTo: (a, b) => checkTypeRelatedTo(a, b, identityRelation, /*errorNode*/undefined),
             isSubtypeOf: (a, b) => checkTypeRelatedTo(a, b, subtypeRelation, /*errorNode*/undefined),
             isAssignableTo: (a, b) => checkTypeRelatedTo(a, b, assignableRelation, /*errorNode*/undefined),
-            isComparableTo: (a, b) => checkTypeRelatedTo(a, b, comparableRelation, /*errorNode*/undefined),
+            isComparableTo: areTypesComparable,
             isInstantiationOf: (a, b) => {
                 return a && b && (a.target === b);
             },
