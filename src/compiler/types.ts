@@ -1896,16 +1896,16 @@ namespace ts {
          */
         lookupTypeAt(name: string, position: Node): Type;
 
-        getAnyType(): IntrinsicType;
-        getStringType(): IntrinsicType;
-        getNumberType(): IntrinsicType;
-        getBooleanType(): IntrinsicType;
-        getVoidType(): IntrinsicType;
-        getUndefinedType(): IntrinsicType;
-        getNullType(): IntrinsicType;
-        getESSymbolType(): IntrinsicType;
-        getNeverType(): IntrinsicType;
-        getUnknownType(): IntrinsicType;
+        getAnyType(): Type;
+        getStringType(): Type;
+        getNumberType(): Type;
+        getBooleanType(): Type;
+        getVoidType(): Type;
+        getUndefinedType(): Type;
+        getNullType(): Type;
+        getESSymbolType(): Type;
+        getNeverType(): Type;
+        getUnknownType(): Type;
         getStringLiteralType(text: string): StringLiteralType;
 
         // Should not be called directly.  Should only be accessed through the Program instance.
