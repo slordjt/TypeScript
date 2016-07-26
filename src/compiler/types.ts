@@ -1916,12 +1916,12 @@ namespace ts {
         isInstantiationOf(a: GenericType, b: GenericType): boolean;
 
         /**
-         * Looks up a global symbol named "name" with meaning SymbolFlags.Type
+         * Returns the declared type of the globally named symbol with meaning SymbolFlags.Type
          *  Returns the unknown type on failure.
          */
         lookupGlobalType(name: string): Type;
         /**
-         * Resolve a symbol lexically at the position specified with meaning SymbolFlags.Type
+         * Returns the declared type of the named symbol lexically at the position specified with meaning SymbolFlags.Type
          *  Returns the unknown type on failure.
          */
         lookupTypeAt(name: string, position: Node): Type;
