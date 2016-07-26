@@ -103,7 +103,36 @@ namespace ts {
 
             getJsxElementAttributesType,
             getJsxIntrinsicTagNames,
-            isOptionalParameter
+            isOptionalParameter,
+
+            isIdenticalTo: (a, b) => checkTypeRelatedTo(a, b, identityRelation, /*errorNode*/undefined),
+            isSubtypeOf: (a, b) => checkTypeRelatedTo(a, b, subtypeRelation, /*errorNode*/undefined),
+            isAssignableTo: (a, b) => checkTypeRelatedTo(a, b, assignableRelation, /*errorNode*/undefined),
+            isComparableTo: (a, b) => checkTypeRelatedTo(a, b, comparableRelation, /*errorNode*/undefined),
+            isInstantiationOf: (a, b) => {
+                return a && b && (a.target === b); 
+            },
+
+            lookupGlobalType: name => {
+                const symbol = getGlobalTypeSymbol(name);
+                return symbol ? getDeclaredTypeOfSymbol(symbol) : unknownType;
+            },
+            lookupTypeAt: (name, node) => {
+                const symbol = resolveName(node, name, SymbolFlags.Type, /*nameNotFoundMessage*/undefined, /*nameArg*/undefined);
+                return symbol ? getDeclaredTypeOfSymbol(symbol) : unknownType;
+            },
+
+            getAnyType: () => anyType,
+            getStringType: () => stringType,
+            getNumberType: () => numberType,
+            getBooleanType: () => booleanType,
+            getVoidType: () => voidType,
+            getUndefinedType: () => undefinedType,
+            getNullType: () => nullType,
+            getESSymbolType: () => esSymbolType,
+            getNeverType: () => neverType,
+            getUnknownType: () => unknownType,
+            getStringLiteralType: getStringLiteralTypeForText,
         };
 
         const unknownSymbol = createSymbol(SymbolFlags.Property | SymbolFlags.Transient, "unknown");

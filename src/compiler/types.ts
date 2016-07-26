@@ -1861,6 +1861,53 @@ namespace ts {
         getJsxIntrinsicTagNames(): Symbol[];
         isOptionalParameter(node: ParameterDeclaration): boolean;
 
+        /**
+         * Two types are identical iff they are references to the exact same fully qualified, resolved type (usually an alias to ===)
+         */
+        isIdenticalTo(a: Type, b: Type): boolean;
+        /**
+         * A type is a subtype of another if the collection of its members is contained within the collection of the other's members
+         */
+        isSubtypeOf(a: Type, b: Type): boolean;
+        /**
+         * Same as subtype, but all types are assignable to `any` and `any` is assignable to all types
+         */
+        isAssignableTo(a: Type, b: Type): boolean;
+        /**
+         * Same as assignable, but all unions with overlapping constituient types are comparable, and units of the same type are comparable
+         */
+        isComparableTo(a: Type, b: Type): boolean;
+        /**
+         * Not a formal relationship - returns true if a is an instantiation of the generic type b
+         */
+        isInstantiationOf(a: GenericType, b: GenericType): boolean;
+
+        /**
+         * Looks up a global symbol named "name" with meaning SymbolFlags.Type
+         *  This is identical to the internal method getGlobalType but without
+         *  the expected arity based return value.
+         *  Returns the unknown type on failure.
+         */
+        lookupGlobalType(name: string): Type;
+        /**
+         * Resolve a symbol lexically at the position specified with meaning SymbolFlags.Type
+         *  This is works similarly to the internal method resolveName, but with less exposed configuration.
+         *  Returns the unknown type on failure.
+         */
+        lookupTypeAt(name: string, position: Node): Type;
+
+        getAnyType(): IntrinsicType;
+        getStringType(): IntrinsicType;
+        getNumberType(): IntrinsicType;
+        getBooleanType(): IntrinsicType;
+        getVoidType(): IntrinsicType;
+        getUndefinedType(): IntrinsicType;
+        getNullType(): IntrinsicType;
+        getESSymbolType(): IntrinsicType;
+        getNeverType(): IntrinsicType;
+        getUnknownType(): IntrinsicType;
+        getStringLiteralType(text: string): StringLiteralType;
+
         // Should not be called directly.  Should only be accessed through the Program instance.
         /* @internal */ getDiagnostics(sourceFile?: SourceFile, cancellationToken?: CancellationToken): Diagnostic[];
         /* @internal */ getGlobalDiagnostics(): Diagnostic[];
