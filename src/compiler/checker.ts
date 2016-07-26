@@ -110,7 +110,7 @@ namespace ts {
             isAssignableTo: (a, b) => checkTypeRelatedTo(a, b, assignableRelation, /*errorNode*/undefined),
             isComparableTo: (a, b) => checkTypeRelatedTo(a, b, comparableRelation, /*errorNode*/undefined),
             isInstantiationOf: (a, b) => {
-                return a && b && (a.target === b); 
+                return a && b && (a.target === b);
             },
 
             lookupGlobalType: name => {
